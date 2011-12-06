@@ -1,18 +1,10 @@
 ## Inline Styles Mailer
 
-Using Jack Danger's excellent [Inline Styles](https://github.com/jackdanger/inline_styles) gem is even easier if you're using Rails 3.1 too.
+Using Jack Danger's excellent [Inline Styles](https://github.com/jackdanger/inline_styles) gem is even easier if you're using Rails 3.1 and this gem.
 
 The Inline Styles gem helps you embed CSS styles into your markup so that you can send pretty HTML emails that won't get butchered by email clients that strip out CSS. Or, more precisely, will help reduce the amount of butchering (even with inline CSS some styles, like background images, are often cut out).
 
-This gem stands on the shoulder's of the [inline_styles](https://github.com/jackdanger/inline_styles) and [sass-rails](https://github.com/rails/sass-rails) gem, merely adding some code to make it more convenient to use.
-
-## Installation
-
-If you're using Bundler:
-
-```ruby
-gem 'inline_styles_mailer'
-```
+This gem stands on the shoulders of the [inline_styles](https://github.com/jackdanger/inline_styles) and [sass-rails](https://github.com/rails/sass-rails) gem, merely adding some code to make it more convenient to use.
 
 ## What do you mean, "inline style"?
 
@@ -47,6 +39,15 @@ Then this gem will mash that all up into:
 So you can keep your templates clean and take advantage of CSS preprocessing goodness if you want without compromising the portability of your HTML in various email clients.
 
 MailChimp have a nice article: [How To Code HTML Emails](http://kb.mailchimp.com/article/how-to-code-html-emails/).
+
+## Installation
+
+If you're using Bundler:
+
+```ruby
+source 'http://rubygems.org'
+gem 'inline_styles_mailer'
+```
 
 ## Usage
 
@@ -90,6 +91,10 @@ class FooMailer < ActionMailer::Base
   ...
 end
 ```
+
+## Rails 3.0
+
+This gem might also work with Rails 3.0 (or Rails 3.1 without the asset pipeline enabled) but I haven't tested it. You'd have to use the <code>stylesheet_path</code> option.
 
 ## Development
 
