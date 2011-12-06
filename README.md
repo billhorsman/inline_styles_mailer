@@ -14,6 +14,40 @@ If you're using Bundler:
 gem 'inline_styles_mailer'
 ```
 
+## What do you mean, "inline style"?
+
+Let's say you have a mail template like this:
+
+```html
+<html>
+  <body>
+    <p>Hello World</p>
+  </body>
+</html>
+```
+
+And a CSS file like this:
+
+```css
+p {
+  color: red;
+}
+```
+
+Then this gem will mash that all up into:
+
+```html
+<html>
+  <body>
+    <p style="color: red;">Hello World</p>
+  </body>
+</html>
+```
+
+So you can keep your templates clean and take advantage of CSS preprocessing goodness if you want without compromising the portability of your HTML in various email clients.
+
+MailChimp have a nice article: [How To Code HTML Emails](http://kb.mailchimp.com/article/how-to-code-html-emails/).
+
 ## Usage
 
 If you keep things simple, then it's just one line:
