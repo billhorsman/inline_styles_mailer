@@ -100,4 +100,6 @@ This gem might also work with Rails 3.0 (or Rails 3.1 without the asset pipeline
 
 Questions or problems? Please post them on the [issue tracker](https://github.com/billhorsman/inline_styles_mailer/issues). You can contribute changes by forking the project and submitting a pull request. You can ensure the tests passing by running `bundle` and `rake`.
 
+The tests also run on [Travis CI](http://travis-ci.org/#!/billhorsman/inline_styles_mailer).
+
 This gem was created by Bill Horsman and is under the MIT License.
