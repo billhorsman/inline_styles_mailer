@@ -23,15 +23,12 @@ module InlineStylesMailer
     end
 
     def css_content
-      puts "#{`pwd`}"
       @stylesheets ||= ["_#{self.name.underscore}"]
       @css_content ||= @stylesheets.map {|stylesheet|
         file = locate_css_file(stylesheet)
         if File.exist?(file)
-          puts "Processing #{file}"
           Sass::Engine.new(File.read(file), syntax: :scss).render
         else
-          puts "Skipping #{file}"
           nil
         end
       }.compact.join
