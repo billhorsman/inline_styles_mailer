@@ -92,13 +92,17 @@ class FooMailer < ActionMailer::Base
 end
 ```
 
-## Rails 3.0
+## Rails 3.0?
 
-This gem might also work with Rails 3.0 (or Rails 3.1 without the asset pipeline enabled) but I haven't tested it. You'd have to use the <code>stylesheet_path</code> option.
+Maybe. This gem might work with Rails 3.0 (or Rails 3.1 without the asset pipeline enabled) but I haven't tested it. You'd have to use the <code>stylesheet_path</code> option for starters.
 
-## Ruby 1.9.2
+## Rails 2.3?
 
-I needlessly make use of some Ruby 1.9.2 syntax so this isn't going to work with Ruby 1.8.7. Patches welcome!
+Unlikely. Let me know if I'm wrong.
+
+## Ruby 1.8.7?
+
+Not at the moment. I needlessly make use of some Ruby 1.9.2 syntax so this isn't going to work with Ruby 1.8.7. Patches welcome!
 
 ## Development
 
