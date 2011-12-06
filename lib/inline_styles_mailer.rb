@@ -27,7 +27,15 @@ module InlineStylesMailer
       @css_content ||= @stylesheets.map {|stylesheet|
         file = locate_css_file(stylesheet)
         if File.exist?(file)
-          Sass::Engine.new(File.read(file), syntax: :scss).render
+          case file
+          when /\.scss$/
+            Sass::Engine.new(File.read(file), syntax: :scss).render
+          when /\.sass$/
+            Sass::Engine.new(File.read(file), syntax: :sass).render
+          else
+            # Plain old CSS? Let's assume it is.
+            File.read(file)
+          end
         else
           nil
         end
@@ -40,6 +48,12 @@ module InlineStylesMailer
 
     def page
       @page ||= InlineStyles::Page.new.with_css(css_content)
+    end
+
+    # For testing
+    def reset
+      @css_content = nil
+      @page = nil
     end
 
   end
