@@ -29,28 +29,33 @@ class FooMailer < ActionMailer::Base
 end
 ```
 
-If you have a CSS file <code>app/assets/stylesheets/_foo_mailer.css.scss</code> then it will get automatically applied to the mail using the inline_styles gem. That name (<code>_foo_mailer.css.scss</code>) is based on the mailer class name, FooMailer.
+If you have a CSS file <code>app/assets/stylesheets/_foo_mailer*</code> (where * can be .css, .css.scss or .css.sass) then it will get automatically applied to the mail using the inline_styles gem. That name (<code>_foo_mailer</code>) is based on your mailer class name, e.g. FooMailer. If you have more than one file matching that pattern then it will use them all.
 
-Want to use a different file? Declare <code>use_stylesheet</code>:
+It will use one of three preprocessing methods based on the filename:
+
+* [.scss](http://sass-lang.com/)
+* [.sass](http://sass-lang.com/)
+* anything else (e.g. .css) no preprocessing at all
+
+Want to use a different css file? Declare <code>use_stylesheet</code>:
 
 ```ruby
 class FooMailer < ActionMailer::Base
   include InlineStylesMailer
-  use_stylesheet '_bar'
-
-
-  def foo(email)
-    mail(:to => email, :subject => "Foo foo!")
-  end
-
+  use_stylesheet '_bar.css.sass'
+  ...
 end
 ```
 
-The location of that file (<code>app/assets/stylesheets/</code>) is fixed. It will use one of three preprocessing methods based on the filename:
+You can use an array of stylesheets if you like. Don't keep your stylesheets in <code>app/assets/stylesheets</code>? Declare <code>stylesheet_path</code>:
 
-* .scss
-* .sass
-* .css (i.e. no preprocessing at all)
+```ruby
+class FooMailer < ActionMailer::Base
+  include InlineStylesMailer
+  stylesheet_path 'public/stylesheets'
+  ...
+end
+```
 
 ## Development
 

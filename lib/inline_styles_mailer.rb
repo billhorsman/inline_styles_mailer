@@ -14,8 +14,8 @@ module InlineStylesMailer
       @stylesheets = Array(stylesheets)
     end
 
-    def locate_css_file(stylesheet)
-      Rails.root.join("app", "assets", "stylesheets", "#{stylesheet}.css.scss")
+    def stylesheet_path(path)
+      @stylesheet_path = path
     end
 
     def locate_template(name)
@@ -23,10 +23,10 @@ module InlineStylesMailer
     end
 
     def css_content
-      @stylesheets ||= ["_#{self.name.underscore}"]
+      @stylesheets ||= ["_#{self.name.underscore}*"]
+      @stylesheet_path ||= File.join("app", "assets", "stylesheets")
       @css_content ||= @stylesheets.map {|stylesheet|
-        file = locate_css_file(stylesheet)
-        if File.exist?(file)
+        Dir[Rails.root.join(@stylesheet_path, "#{stylesheet}")].map {|file|
           case file
           when /\.scss$/
             Sass::Engine.new(File.read(file), syntax: :scss).render
@@ -36,10 +36,9 @@ module InlineStylesMailer
             # Plain old CSS? Let's assume it is.
             File.read(file)
           end
-        else
-          nil
-        end
-      }.compact.join
+        }.join("\n")
+      }.compact.join("\n")
+      @css_content
     end
 
     def locate_layout
