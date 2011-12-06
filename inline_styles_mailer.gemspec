@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = InlineStylesMailer::VERSION
   s.authors     = ["Bill Horsman"]
   s.email       = ["bill@logicalcobwebs.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/billhorsman/inline_styles_mailer"
   s.summary     = %q{Convenient use of inline_styles gem with Rails 3.1}
   s.description = %q{Convenient use of inline_styles gem with Rails 3.1}
 

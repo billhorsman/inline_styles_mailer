@@ -4,9 +4,11 @@ Using Jack Danger's excellent [Inline Styles](https://github.com/jackdanger/inli
 
 The Inline Styles gem helps you embed CSS styles into your markup so that you can send pretty HTML emails that won't get butchered by email clients that strip out CSS. Or, more precisely, will help reduce the amount of butchering (even with inline CSS some styles, like background images, are often cut out).
 
+This gem stands on the shoulder's of the [inline_styles](https://github.com/jackdanger/inline_styles) and [sass-rails](https://github.com/rails/sass-rails) gem, merely adding some code to make it more convenient to use.
+
 ## Installation
 
-If you're using bundler:
+If you're using Bundler:
 
 ```ruby
 gem 'inline_styles_mailer'
@@ -14,7 +16,7 @@ gem 'inline_styles_mailer'
 
 ## Usage
 
-If you follow some conventions, then it's just one line:
+If you keep things simple, then it's just one line:
 
 ```ruby
 class FooMailer < ActionMailer::Base
@@ -27,9 +29,9 @@ class FooMailer < ActionMailer::Base
 end
 ```
 
-If you have a CSS file <code>app/assets/stylesheets/_foo.css.scss</code> then it will get automatically applied to the mail using the inline_styles gem. That name (<code>_foo.css.scss</code>) is based on the mailer class name.
+If you have a CSS file <code>app/assets/stylesheets/_foo_mailer.css.scss</code> then it will get automatically applied to the mail using the inline_styles gem. That name (<code>_foo_mailer.css.scss</code>) is based on the mailer class name, FooMailer.
 
-Want to use a different file?
+Want to use a different file? Declare <code>use_stylesheet</code>:
 
 ```ruby
 class FooMailer < ActionMailer::Base
@@ -44,7 +46,9 @@ class FooMailer < ActionMailer::Base
 end
 ```
 
-The location of that file, and the fact that it uses [SASS](http://sass-lang.com/) is fixed at this time.
+The location of that file (<code>app/assets/stylesheets/</code>), and the fact that it uses [SASS](http://sass-lang.com/) is fixed at this time.
+
+<strong>TODO</strong>: get it to work out what sort of preprocessing, if any, to do based on the filename.
 
 ## Development
 
