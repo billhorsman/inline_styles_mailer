@@ -1,5 +1,4 @@
-## Inline Styles Mailer [![Build
-Status](https://secure.travis-ci.org/billhorsman/inline_styles_mailer.png)](http://travis-ci.org/billhorsman/inline_styles_mailer)
+## Inline Styles Mailer [![Build Status](https://secure.travis-ci.org/billhorsman/inline_styles_mailer.png)](http://travis-ci.org/billhorsman/inline_styles_mailer)
 
 Using Jack Danger's excellent [Inline Styles](https://github.com/jackdanger/inline_styles) gem is even easier if you're using Rails 3.1 and this gem.
 
