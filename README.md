@@ -46,9 +46,11 @@ class FooMailer < ActionMailer::Base
 end
 ```
 
-The location of that file (<code>app/assets/stylesheets/</code>), and the fact that it uses [SASS](http://sass-lang.com/) is fixed at this time.
+The location of that file (<code>app/assets/stylesheets/</code>) is fixed. It will use one of three preprocessing methods based on the filename:
 
-<strong>TODO</strong>: get it to work out what sort of preprocessing, if any, to do based on the filename.
+* .scss
+* .sass
+* .css (i.e. no preprocessing at all)
 
 ## Development
 
