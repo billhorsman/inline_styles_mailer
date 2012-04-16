@@ -62,16 +62,18 @@ module InlineStylesMailer
       super(mail, &block) # We'll just let this pass through
     else
       super(options) do |format|
-        # Only format for text if an appropriate template exists
-        # TODO we should be finding this file using Rails
-        unless Dir[Rails.root.join('app', 'views', self.class.name.underscore, "#{action_name}.text.*")].empty?
-          format.text do
-            render
+        lookup_context.find_all(action_name, self.class.name.underscore).each do |template|
+          template.formats.each do |f|
+            format.send(f) do
+              case f.to_s
+              when "html"
+                html = render_to_string :file => template.inspect, :layout => self.class.locate_layout
+                render :text => self.class.page.with_html(html).apply, :formats => [:html]
+              else
+                render :formats => [f]
+              end
+            end
           end
-        end
-        format.html do
-          html = render_to_string :file => self.class.locate_template(action_name), :layout => self.class.locate_layout
-          render :text => self.class.page.with_html(html).apply
         end
       end
     end
