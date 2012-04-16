@@ -62,7 +62,11 @@ module InlineStylesMailer
       super(mail, &block) # We'll just let this pass through
     else
       super(options) do |format|
-        lookup_context.find_all(action_name, self.class.name.underscore).each do |template|
+        # Rails 3.1 takes an array, while Rails 3.0 takes a string.
+        # See https://github.com/billhorsman/inline_styles_mailer/issues/1
+        prefixes = self.class.name.underscore
+        prefixes = [prefixes] unless Rails.version =~ /^3\.0/
+        lookup_context.find_all(action_name, prefixes).each do |template|
           template.formats.each do |f|
             format.send(f) do
               case f.to_s
