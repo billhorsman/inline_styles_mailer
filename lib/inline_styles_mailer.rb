@@ -41,10 +41,6 @@ module InlineStylesMailer
       @css_content
     end
 
-    def locate_layout
-      "mailer"
-    end
-
     def page
       @page ||= InlineStyles::Page.new.with_css(css_content)
     end
@@ -71,7 +67,7 @@ module InlineStylesMailer
             format.send(f) do
               case f.to_s
               when "html"
-                html = render_to_string :file => template.inspect, :layout => self.class.locate_layout
+                html = render_to_string :file => template.inspect, :layout => layout_to_use
                 render :text => self.class.page.with_html(html).apply, :formats => [:html]
               else
                 render :formats => [f]
@@ -80,6 +76,15 @@ module InlineStylesMailer
           end
         end
       end
+    end
+  end
+
+  def layout_to_use
+    case _layout
+    when ActionView::Template
+      _layout.inspect.split("/").last.split(".").first
+    when String
+      _layout.split("/").last.split(".").first
     end
   end
 
