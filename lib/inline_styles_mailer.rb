@@ -63,11 +63,12 @@ module InlineStylesMailer
         prefixes = self.class.name.underscore
         prefixes = [prefixes] unless Rails.version =~ /^3\.0/
         lookup_context.find_all(action_name, prefixes).each do |template|
+          template_path = template.inspect.split("/").slice(-2, 2).join("/")
           template.formats.each do |f|
             format.send(f) do
               case f.to_s
               when "html"
-                html = render_to_string :file => template.inspect, :layout => layout_to_use
+                html = render_to_string :file => template_path, :layout => layout_to_use
                 render :text => self.class.page.with_html(html).apply, :formats => [:html]
               else
                 render :formats => [f]
