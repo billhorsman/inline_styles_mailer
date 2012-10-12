@@ -60,9 +60,10 @@ module InlineStylesMailer
       super(options) do |format|
         # Rails 3.1 takes an array, while Rails 3.0 takes a string.
         # See https://github.com/billhorsman/inline_styles_mailer/issues/1
-        prefixes = self.class.name.underscore
+        prefixes = options[:template_path] || self.class.name.underscore
         prefixes = [prefixes] unless Rails.version =~ /^3\.0/
-        lookup_context.find_all(action_name, prefixes).each do |template|
+        templates = lookup_context.find_all(options[:template_name] || action_name, prefixes)
+        templates.each do |template|
           template_path = template.inspect.split("/").slice(-2, 2).join("/")
           template.formats.each do |f|
             format.send(f) do
