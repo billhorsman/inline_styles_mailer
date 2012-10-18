@@ -63,7 +63,12 @@ module InlineStylesMailer
         prefixes = options[:template_path] || self.class.name.underscore
         prefixes = [prefixes] unless Rails.version =~ /^3\.0/
         templates = lookup_context.find_all(options[:template_name] || action_name, prefixes)
-        templates.each do |template|
+        options.reverse_merge!(:mime_version => "1.0", :charset => "UTF-8", :content_type => "text/plain", :parts_order => [ "text/plain", "text/enriched", "text/html"])
+        templates.sort_by {|t|
+          i = options[:parts_order].index(t.mime_type)
+          i > -1 ? i : 99
+        }.each do |template|
+        # templates.each do |template|
           # e.g. template = app/views/user_mailer/welcome.html.erb
           template_path = template.inspect.split("/").slice(-2, 2).join("/") # e.g. user_mailer/welcome.html.erb
           parts = template_path.split('.')
