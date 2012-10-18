@@ -64,16 +64,19 @@ module InlineStylesMailer
         prefixes = [prefixes] unless Rails.version =~ /^3\.0/
         templates = lookup_context.find_all(options[:template_name] || action_name, prefixes)
         templates.each do |template|
-          template_path = template.inspect.split("/").slice(-2, 2).join("/")
-          template.formats.each do |f|
-            format.send(f) do
-              case f.to_s
-              when "html"
-                html = render_to_string :file => template_path, :layout => layout_to_use, :formats => [:html]
-                render :text => self.class.page.with_html(html).apply, :formats => [:html]
-              else
-                render :formats => [f]
-              end
+          # e.g. template = app/views/user_mailer/welcome.html.erb
+          template_path = template.inspect.split("/").slice(-2, 2).join("/") # e.g. user_mailer/welcome.html.erb
+          parts = template_path.split('.')
+          handler = parts.pop.to_sym # e.g. erb
+          extension = parts.pop.to_sym # e.g. html
+          file = parts.join('.') # e.g. user_mailer/welcome (you get a deprecation warning if you don't strip off the format and handler)
+          format.send(extension) do
+            case extension
+            when :html
+              html = render_to_string :file => file, :layout => layout_to_use, handlers: [handler]
+              render :text => self.class.page.with_html(html).apply
+            else
+              render
             end
           end
         end
