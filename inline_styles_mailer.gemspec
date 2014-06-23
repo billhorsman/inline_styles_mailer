@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  s.required_ruby_version = '>= 1.9.2'
+  s.required_ruby_version = '>= 1.9.3'
   s.add_development_dependency "rspec"
   s.add_runtime_dependency "inline_styles"
   s.add_runtime_dependency "rails", [">= 3.1", "< 4.2"]
