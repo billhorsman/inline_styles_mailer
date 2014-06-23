@@ -5,7 +5,7 @@ require 'rails/all'
 describe InlineStylesMailer do
   before(:each) do
     FooMailer.reset
-    Rails.should_receive(:root).any_number_of_times.and_return(Pathname.new(File.join("spec", "fixtures")))
+    Rails.stub(:root).and_return(Pathname.new(File.join("spec", "fixtures")))
   end
 
   describe "Inlining CSS" do
