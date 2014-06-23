@@ -65,7 +65,9 @@ module InlineStylesMailer
         templates = lookup_context.find_all(options[:template_name] || action_name, prefixes)
         options.reverse_merge!(:mime_version => "1.0", :charset => "UTF-8", :content_type => "text/plain", :parts_order => [ "text/plain", "text/enriched", "text/html"])
         templates.sort_by {|t|
-          i = options[:parts_order].index(t.mime_type)
+          # Rails 4.1 use #type but earlier versions use #mime_type
+          mime_type = t.respond_to?(:mime_type) ? t.mime_type : t.type
+          i = options[:parts_order].index(mime_type)
           i > -1 ? i : 99
         }.each do |template|
         # templates.each do |template|

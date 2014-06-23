@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Bill Horsman"]
   s.email       = ["bill@logicalcobwebs.com"]
   s.homepage    = "https://github.com/billhorsman/inline_styles_mailer"
-  s.summary     = %q{Convenient use of inline_styles gem with Rails 3.1}
-  s.description = %q{Convenient use of inline_styles gem with Rails 3.1}
+  s.summary     = %q{Convenient use of inline_styles gem with Rails 3.1+ and Rails 4}
+  s.description = %q{Convenient use of inline_styles gem with Rails 3.1+ and Rails 4}
 
   s.rubyforge_project = "inline_styles_mailer"
 
@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.2'
   s.add_development_dependency "rspec"
   s.add_runtime_dependency "inline_styles"
-  s.add_runtime_dependency "rails", [">= 3.1", "< 4.1"]
+  s.add_runtime_dependency "rails", [">= 3.1", "< 4.2"]
   s.add_runtime_dependency "sass-rails"
 end
