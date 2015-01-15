@@ -1,3 +1,10 @@
+## Next
+
+## v0.0.9
+
+Now needs Ruby 1.9.3 (drop support for 1.9.2), because Rails 4.1 does so.
+Works with Rails 4.2
+
 ## v0.0.8
 
 Works with Rails 4.1
