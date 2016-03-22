@@ -1,8 +1,18 @@
 language: ruby
-rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.8
-  - 2.2.4
-  - 2.3.0
+matrix:
+  include:
+    - rvm: 1.9.3
+      gemfile: spec/Gemfile.rails-4.2
+    - rvm: 2.0.0
+      gemfile: spec/Gemfile.rails-4.2
+    - rvm: 2.1.8
+      gemfile: spec/Gemfile.rails-4.2
+    - rvm: 2.2.4
+      gemfile: spec/Gemfile.rails-4.2
+    - rvm: 2.2.4
+      gemfile: spec/Gemfile.rails-5.0
+    - rvm: 2.3.0
+      gemfile: spec/Gemfile.rails-4.2
+    - rvm: 2.3.0
+      gemfile: spec/Gemfile.rails-5.0
 sudo: false
