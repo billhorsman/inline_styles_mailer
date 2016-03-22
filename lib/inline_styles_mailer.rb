@@ -93,11 +93,23 @@ module InlineStylesMailer
   end
 
   def layout_to_use
-    case _layout
+    case call_layout
     when ActionView::Template
-      _layout.inspect.split("/").last.split(".").first
+      call_layout.inspect.split("/").last.split(".").first
     when String
-      _layout.split("/").last.split(".").first
+      call_layout.split("/").last.split(".").first
+    end
+  end
+
+  # Hack to call _layout the right way depending on the Rails version. This is a code smell
+  # telling us that we shouldn't be doing this at all...
+  def call_layout
+    if method(:_layout).arity == 1
+      # Rails 5?
+      _layout([:html])
+    else
+      # < Rails 5?
+      _layout
     end
   end
 
