@@ -72,7 +72,8 @@ module InlineStylesMailer
         }.each do |template|
         # templates.each do |template|
           # e.g. template = app/views/user_mailer/welcome.html.erb
-          template_path = template.inspect.split("/").slice(-2, 2).join("/") # e.g. user_mailer/welcome.html.erb
+          # e.g. template = app/views/namespace/user_mailer/welcome.html.erb
+          template_path = template.inspect.split("views")[1][1..-1] # e.g. user_mailer/welcome.html.erb
           parts = template_path.split('.')
           handler = parts.pop.to_sym # e.g. erb
           extension = parts.pop.to_sym # e.g. html
