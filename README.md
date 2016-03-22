@@ -1,6 +1,6 @@
 ## Inline Styles Mailer [![Build Status](https://secure.travis-ci.org/billhorsman/inline_styles_mailer.png)](http://travis-ci.org/billhorsman/inline_styles_mailer)
 
-Using Jack Danger's excellent [Inline Styles](https://github.com/jackdanger/inline_styles) gem is even easier if you're using Rails 3.1 and this gem.
+Using Jack Danger's excellent [Inline Styles](https://github.com/jackdanger/inline_styles) gem is even easier if you're using Rails 3.1+ and this gem.
 
 The Inline Styles gem helps you embed CSS styles into your markup so that you can send pretty HTML emails that won't get butchered by email clients that strip out CSS. Or, more precisely, will help reduce the amount of butchering (even with inline CSS some styles, like background images, are often cut out).
 
@@ -92,17 +92,21 @@ class FooMailer < ActionMailer::Base
 end
 ```
 
-## Rails 3.0?
+## What versions of Rails does this work with?
 
-Maybe. This gem might work with Rails 3.0 (or Rails 3.1 without the asset pipeline enabled) but I haven't tested it. You'd have to use the <code>stylesheet_path</code> option for starters.
+| Version | Working? |
+| --- | --- |
+| 3.0 | It relies on the asset pipeline so I'd be surprised if it works. Not tested. |
+| 3.1 | Yes |
+| 3.2 | Yes |
+| 4.0 | Yes |
+| 4.1 | Yes |
+| 4.2 | Yes |
+| 5.0 | Not yet. We hook into a method called `_layout` that has changed its signature. I'm working on it. |
 
-## Rails 2.3?
+## What about Ruby?
 
-Unlikely. Let me know if I'm wrong.
-
-## Ruby 1.8.7?
-
-Not at the moment. I needlessly make use of some Ruby 1.9.2 syntax so this isn't going to work with Ruby 1.8.7. Patches welcome!
+Anything later than Ruby 1.9.2 should be fine.
 
 ## Development
 
