@@ -92,21 +92,29 @@ class FooMailer < ActionMailer::Base
 end
 ```
 
+## Upgrading to Version 1.0
+
+We decided to bump up the major version because of a fix (5d0b6f4) we made to the way the template was found. We were incorrectly assuming that all mail templates were only nested one deep in `app/views` but that's not always the case. It now works correctly but you might have worked around this bug (issue #8) by moving your templates. You don't need to do that any more.
+
 ## What versions of Rails does this work with?
+
+We run tests using Rails `4.2.6` and `5.0.0.beta3`.
 
 | Version | Working? |
 | --- | --- |
-| 3.0 | It relies on the asset pipeline so I'd be surprised if it works. Not tested. |
+| 3.0 | No * |
 | 3.1 | Yes |
 | 3.2 | Yes |
 | 4.0 | Yes |
 | 4.1 | Yes |
 | 4.2 | Yes |
-| 5.0 | Not yet. We hook into a method called `_layout` that has changed its signature. I'm working on it. |
+| 5.0 | Yes |
+
+\* It relies on the asset pipeline so I'd be surprised if it works. Not tested.
 
 ## What about Ruby?
 
-Anything later than Ruby 1.9.2 should be fine.
+Anything later than Ruby `1.9.2` should be fine. We test using Ruby `1.9.3`, `2.0.0`, `2.1.8`, `2.2.4` and `2.3.0`.
 
 ## Development
 
