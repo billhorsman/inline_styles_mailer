@@ -114,7 +114,11 @@ We run tests using Rails `4.2.6` and `5.0.0.beta3`.
 
 ## What about Ruby?
 
-Anything later than Ruby `1.9.2` should be fine. We test using Ruby `1.9.3`, `2.0.0`, `2.1.8`, `2.2.4` and `2.3.0`.
+Anything later than Ruby `1.9.2` should be fine. We test using Ruby 2.0.0`, `2.1.8`, `2.2.4` and `2.3.0`.
+
+### 1.9 Support
+
+We don't test with Ruby `1.9` because there is a dependency on the `mime-types-data` gem for which the latest version requires Ruby `2.0` or later. That doesn't mean you can't use Ruby `1.9.3` but you'll need to make sure you're using a version of `mime-types-data` less than `3`.
 
 ## Development
 
