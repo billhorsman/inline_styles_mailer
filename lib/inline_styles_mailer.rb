@@ -23,9 +23,8 @@ module InlineStylesMailer
     end
 
     def css_content
-      @stylesheets ||= ["_#{self.name.underscore}*"]
       @stylesheet_path ||= File.join("app", "assets", "stylesheets")
-      @css_content ||= @stylesheets.map {|stylesheet|
+      @css_content ||= stylesheets.map {|stylesheet|
         Dir[Rails.root.join(@stylesheet_path, "#{stylesheet}")].map {|file|
           case file
           when /\.scss$/
@@ -39,6 +38,14 @@ module InlineStylesMailer
         }.join("\n")
       }.compact.join("\n")
       @css_content
+    end
+
+    def stylesheets
+      return @stylesheets if defined? @stylesheets
+
+      path = self.name.underscore
+      modified_path = path.gsub(/\//, '/_')
+      @stylesheets = [modified_path == path ? "_#{path}*" :  "#{modified_path}*"]
     end
 
     def page
