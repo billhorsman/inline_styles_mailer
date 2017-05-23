@@ -1,7 +1,7 @@
 language: ruby
 matrix:
   include:
-    - rvm: 2.0.0
+    - rvm: 2.0.0-p648
       gemfile: spec/Gemfile.rails-4.2
     - rvm: 2.1.8
       gemfile: spec/Gemfile.rails-4.2
