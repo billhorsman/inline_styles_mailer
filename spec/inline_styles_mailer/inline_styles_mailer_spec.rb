@@ -18,7 +18,7 @@ describe InlineStylesMailer do
         mail = FooMailer.foo
         mail.body.parts.length.should eq(2)
         mail.body.parts[1].body.should =~ /<p style="color: red;">Testing foo text\/html\.<\/p>/
-        mail.body.parts[1].body.should =~ /<body style="background: yellow;">/
+        mail.body.parts[1].body.should =~ /<body style="background-color: yellow;">/
       end
     end
 
@@ -30,7 +30,7 @@ describe InlineStylesMailer do
         mail = FooMailer.foo
         mail.body.parts.length.should eq(2)
         mail.body.parts[1].body.should =~ /<p style="color: orange;">Testing foo text\/html\.<\/p>/
-        mail.body.parts[1].body.should =~ /<body style="background: yellow;">/
+        mail.body.parts[1].body.should =~ /<body style="background-color: yellow;">/
       end
     end
 
@@ -42,7 +42,7 @@ describe InlineStylesMailer do
         mail = FooMailer.foo
         mail.body.parts.length.should eq(2)
         mail.body.parts[1].body.should =~ /<p style="color: green;">Testing foo text\/html\.<\/p>/
-        mail.body.parts[1].body.should =~ /<body style="background: yellow;">/
+        mail.body.parts[1].body.should =~ /<body style="background-color: yellow;">/
       end
     end
 
@@ -54,7 +54,7 @@ describe InlineStylesMailer do
         mail = FooMailer.foo
         mail.body.parts.length.should eq(2)
         mail.body.parts[1].body.should =~ /<p style="color: blue;">Testing foo text\/html\.<\/p>/
-        mail.body.parts[1].body.should =~ /<body style="background: yellow;">/
+        mail.body.parts[1].body.should =~ /<body style="background-color: yellow;">/
       end
     end
 
@@ -80,6 +80,20 @@ describe InlineStylesMailer do
       end
     end
 
+  end
+
+  describe "Namespaced mailers" do
+    context "Default CSS file" do
+      before do
+        Foo::BarMailer.stylesheet_path "assets/stylesheets"
+      end
+
+      it "should inline the CSS" do
+        mail = Foo::BarMailer.bar
+        mail.body.should =~ /<p style="color: purple;">Testing foobar html\.<\/p>/
+        mail.body.should =~ /<body style="background-color: orange;">/
+      end
+    end
   end
 
 end
