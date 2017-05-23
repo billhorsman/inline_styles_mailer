@@ -41,11 +41,7 @@ module InlineStylesMailer
     end
 
     def stylesheets
-      return @stylesheets if defined? @stylesheets
-
-      path = self.name.underscore
-      modified_path = path.gsub(/\//, '/_')
-      @stylesheets = [modified_path == path ? "_#{path}*" :  "#{modified_path}*"]
+      @stylesheets ||= [self.name.underscore.sub(/^(.*\/)*(.*)$/, '\1_\2*')]
     end
 
     def page
