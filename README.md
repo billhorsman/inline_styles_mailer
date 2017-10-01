@@ -1,3 +1,7 @@
+## Update for Rails 5.1+
+
+I've started to use the [premailer](https://github.com/premailer/premailer) gem for Rails > 5.0. I'd welcome patches to keep this gem going.
+
 ## Inline Styles Mailer [![Build Status](https://secure.travis-ci.org/billhorsman/inline_styles_mailer.png)](http://travis-ci.org/billhorsman/inline_styles_mailer)
 
 Using Jack Danger's excellent [Inline Styles](https://github.com/jackdanger/inline_styles) gem is even easier if you're using Rails 3.1+ and this gem.
@@ -109,8 +113,11 @@ We run tests using Rails `4.2.6` and `5.0.0.beta3`.
 | 4.1 | Yes |
 | 4.2 | Yes |
 | 5.0 | Yes |
+| 5.1 | No ** |
 
 \* It relies on the asset pipeline so I'd be surprised if it works. Not tested.
+
+\** I'm recommending using the [premailer](https://github.com/premailer/premailer) gem for Rails > 5.0.
 
 ## What about Ruby?
 
