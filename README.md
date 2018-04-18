@@ -102,7 +102,7 @@ We decided to bump up the major version because of a fix (5d0b6f4) we made to th
 
 ## What versions of Rails does this work with?
 
-We run tests using Rails `4.2.6` and `5.0.0.beta3`.
+We run tests using Rails `4.2.6`, `5.0.0.beta3`, `5.1.6` and `5.2`
 
 | Version | Working? |
 | --- | --- |
@@ -113,7 +113,8 @@ We run tests using Rails `4.2.6` and `5.0.0.beta3`.
 | 4.1 | Yes |
 | 4.2 | Yes |
 | 5.0 | Yes |
-| 5.1 | No ** |
+| 5.1 | Yes |
+| 5.2 | Yes |
 
 \* It relies on the asset pipeline so I'd be surprised if it works. Not tested.
 
