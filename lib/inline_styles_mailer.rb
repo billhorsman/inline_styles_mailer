@@ -85,7 +85,12 @@ module InlineStylesMailer
             case extension
             when :html
               html = render_to_string :file => file, :layout => layout_to_use, handlers: [handler]
-              render :text => self.class.page.with_html(html).apply
+              # Rails 5.1 removed render :text
+              if Gem.loaded_specs['rails'].version >= Gem::Version.create('5.0')
+                render :plain => self.class.page.with_html(html).apply
+              else
+                render :text => self.class.page.with_html(html).apply
+              end
             else
               render
             end
