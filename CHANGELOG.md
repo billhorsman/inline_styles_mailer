@@ -1,5 +1,9 @@
 ## Next
 
+## v1.0.3
+
+Added support for Rails 5.2.1 (now simply defined as < 6)
+
 ## v1.0.2
 
 Added support for Rails 5.1 and 5.2.
