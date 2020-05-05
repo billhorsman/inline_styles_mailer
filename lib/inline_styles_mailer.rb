@@ -1,6 +1,6 @@
 require "inline_styles"
 require "inline_styles_mailer/version"
-require "sass"
+require "sassc"
 
 module InlineStylesMailer
 
@@ -28,9 +28,9 @@ module InlineStylesMailer
         Dir[Rails.root.join(@stylesheet_path, "#{stylesheet}")].map {|file|
           case file
           when /\.scss$/
-            Sass::Engine.new(File.read(file), syntax: :scss).render
+            SassC::Engine.new(File.read(file), syntax: :scss, style: :compressed).render
           when /\.sass$/
-            Sass::Engine.new(File.read(file), syntax: :sass).render
+            SassC::Engine.new(File.read(file), syntax: :sass, style: :compressed).render
           else
             # Plain old CSS? Let's assume it is.
             File.read(file)

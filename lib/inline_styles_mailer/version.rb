@@ -1,3 +1,3 @@
 module InlineStylesMailer
-  VERSION = "1.0.3"
+  VERSION = "2.0.0"
 end
