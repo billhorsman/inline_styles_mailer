@@ -84,7 +84,11 @@ module InlineStylesMailer
           format.send(extension) do
             case extension
             when :html
-              html = render_to_string :file => file, :layout => layout_to_use, handlers: [handler]
+              if Gem.loaded_specs['rails'].version >= Gem::Version.create('6.0')
+                html = render_to_string :template => file, :layout => layout_to_use
+              else
+                html = render_to_string :file => file, :layout => layout_to_use, handlers: [handler]
+              end
               # Rails 5.1 removed render :text
               if Gem.loaded_specs['rails'].version >= Gem::Version.create('5.0')
                 render :plain => self.class.page.with_html(html).apply
@@ -112,7 +116,10 @@ module InlineStylesMailer
   # Hack to call _layout the right way depending on the Rails version. This is a code smell
   # telling us that we shouldn't be doing this at all...
   def call_layout
-    if method(:_layout).arity == 1
+    if method(:_layout).arity == 2
+      # Rails 6
+      _layout(lookup_context, [:html])
+    elsif method(:_layout).arity == 1
       # Rails 5?
       _layout([:html])
     else

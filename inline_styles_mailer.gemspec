@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
   s.add_development_dependency "rspec"
   s.add_runtime_dependency "inline_styles"
-  s.add_runtime_dependency "rails", [">= 3.1", "<= 6"]
-  s.add_runtime_dependency "sass-rails"
+  s.add_runtime_dependency "rails", [">= 3.1", "< 7"]
+  s.add_runtime_dependency "sass-rails", ["~> 5.0.8"]
 end
