@@ -17,4 +17,6 @@ matrix:
       gemfile: spec/Gemfile.rails-5.1
     - rvm: 2.3.3
       gemfile: spec/Gemfile.rails-5.2
+    - rvm: 2.6.6
+      gemfile: spec/Gemfile.rails-6.0
 sudo: false
