@@ -118,7 +118,7 @@ module InlineStylesMailer
   def call_layout
     if method(:_layout).arity == 2
       # Rails 6
-      _layout(@_lookup_context, [:html])
+      _layout(lookup_context, [:html])
     elsif method(:_layout).arity == 1
       # Rails 5?
       _layout([:html])
